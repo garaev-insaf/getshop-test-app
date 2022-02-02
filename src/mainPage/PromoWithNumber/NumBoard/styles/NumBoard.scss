@@ -1,0 +1,40 @@
+.num-board {
+    padding: 10px 0;
+    table.num-board-table {
+        border-spacing: 10px;
+        tbody.num-board-table-body {
+            tr {
+                td {
+                    cursor: pointer;
+                    width: 28px;
+                    height: 28px;
+                    box-sizing: content-box;
+                    padding: 12px 30px;
+                    border: 2px solid black;
+                    font-family: Roboto;
+                    font-style: normal;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    color: black;
+                    transition: 0.2s;
+                    -webkit-touch-callout: none; /* iOS Safari */
+                    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+                    -khtml-user-select: none;    /* Konqueror */
+                    -moz-user-select: none;      /* Firefox */
+                    -ms-user-select: none;       /* Internet Explorer/Edge */
+                    user-select: none;          
+                }
+                td:hover {
+                    background: black;
+                    color: white;
+                }
+                td:active {
+                    background: white;
+                    color: black;
+                }
+            }
+        }
+    }
+}

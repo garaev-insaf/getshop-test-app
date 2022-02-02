@@ -1,0 +1,53 @@
+$banner-color: #86d3f4;
+@mixin banner-text-styles {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.banner {
+    position: absolute;
+    right: 0;
+    bottom: 144px;
+    z-index: 1;
+    width: 251px;
+    height: 357px;
+    padding: 20px 10px 10px 10px;
+    background: $banner-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    header.banner-header {
+        h2.header-text {
+            @include banner-text-styles();
+        }
+    }
+    .description {
+        width: 130px;
+        .description-text {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            text-align: center;
+        }
+    }
+    a.button_select {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        width: 156px;
+        height: 52px;
+        background: #000000;
+        border: none;
+        outline: none;
+        text-decoration: none;
+        color: $banner-color;
+        @include banner-text-styles();
+    }
+}

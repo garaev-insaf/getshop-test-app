@@ -11,12 +11,35 @@
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    .main-page-smarttv-wrap {
-        position: absolute;
-        display: block;
-        width: 1306px;
-        height: 755px;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
+    background: #ffa333;
+    .main-page-wrapper {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .main-page-smarttv-wrap {
+            z-index: 0;
+            position: absolute;
+            display: block;
+            width: 1306px;
+            height: 755px;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+        .main-page-background-video {
+            z-index: 0;
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin-top: -3px;
+            box-shadow: inset 1px 5px 10px 10px rgba(0, 0, 0, 1);
+            video {
+                border-radius: 5px;
+                position: relative;
+                margin-top: 1.5px;
+            }
+        }
     }
 }

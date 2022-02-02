@@ -5,7 +5,8 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
+    devtool: "inline-source-map",
     entry: "./src/index.tsx",
     module: {
         rules: [
@@ -37,13 +38,23 @@ module.exports = {
                 loader: 'url-loader'
             },
             {
+                test: /\.(mp4)$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "videos/[hash]-[name].[ext]",
+                        },
+                    },
+                ],
+            },
+            {
                 test: /\.(png|jp(e*)g|svg|gif)$/,
                 use: [
                     {
                         loader: "file-loader",
                         options: {
                             name: "images/[hash]-[name].[ext]",
-                            useRelativePaths: true,
                         },
                     },
                 ],
@@ -65,7 +76,7 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js", ".scss", ".css", "jsx"],
     },
     output: {
-        path: path.resolve(__dirname, "build"),
+        path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
     },
     plugins: [
@@ -90,10 +101,14 @@ module.exports = {
                     from: path.resolve(__dirname, "./public/images"),
                     to: path.resolve(__dirname, "dist/images"),
                 },
-                // {
-                // 	from: path.resolve(__dirname, "./public/fonts"),
-                // 	to: path.resolve(__dirname, "dist/fonts"),
-                // },
+                {
+                    from: path.resolve(__dirname, "./public/videos"),
+                    to: path.resolve(__dirname, "dist/videos"),
+                },
+                {
+                    from: path.resolve(__dirname, "./public/fonts"),
+                    to: path.resolve(__dirname, "dist/fonts"),
+                },
             ],
         }),
     ],
