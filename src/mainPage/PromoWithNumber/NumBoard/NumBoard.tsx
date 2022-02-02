@@ -44,7 +44,21 @@ const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueSt
 
         const checkKey = (e: any) => {
             e = e || window.event;
-            console.log(e.key);
+            if (e.type == 'mousedown' && e.target.tagName == 'TD') {
+                // события клика по виртуальной клавиатуре
+
+                // чистим стили ячейки под фокусом
+                start.style.backgroundColor = '';
+                start.style.color = '';
+                const target = e.target.innerHTML;
+                if (Number(target) < 10 && Number(target) >= 0) {
+                    // перехват нажатия на цифры, чтобы заполняли инпут
+                    fillingNumbers(target, { phoneInputValueState, setPhoneInputValueState })
+                }
+                else {
+                    deletingNumbers({ phoneInputValueState, setPhoneInputValueState })
+                }
+            }
             if (Number(e.key) < 10 && Number(e.key) >= 0) {
                 // перехват нажатия на цифры, чтобы заполняли инпут
                 fillingNumbers(e.key, { phoneInputValueState, setPhoneInputValueState })
@@ -111,7 +125,7 @@ const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueSt
         }
 
         // keydown event
-        document.onkeydown = (e) => checkKey(e);
+        document.onkeydown = document.onmousedown = checkKey;
 
     }, [phoneInputValueState]); // обновление в зависимости от состояния, чтобы каждый раз работал с новыми данными
 
