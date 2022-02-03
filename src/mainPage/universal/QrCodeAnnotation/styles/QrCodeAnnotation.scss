@@ -1,0 +1,19 @@
+.qr-code-annotation {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    &__description {
+        margin-right: 10px;
+        width: 190px;
+        text-align: right;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+}

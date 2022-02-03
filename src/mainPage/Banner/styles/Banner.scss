@@ -7,19 +7,35 @@ $banner-color: #86d3f4;
     text-transform: uppercase;
     text-align: center;
 }
-.banner {
+.banner-wrapper {
+    overflow: hidden;
     position: absolute;
     right: 0;
     bottom: 144px;
     z-index: 1;
     width: 251px;
     height: 357px;
-    padding: 20px 10px 10px 10px;
-    background: $banner-color;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    .banner {
+        position: absolute;
+        right: 0;
+        width: 251px;
+        height: 357px;
+        padding: 20px 10px 10px 10px;
+        background: $banner-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .banner.passive {
+        margin-right: -251px;
+        transition: margin-right 1s;
+    }
+    .banner.active {
+        transition: margin-right 1s;
+        margin-right: 0;
+    }
     header.banner-header {
         h2.header-text {
             @include banner-text-styles();

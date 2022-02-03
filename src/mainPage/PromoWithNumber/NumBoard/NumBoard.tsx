@@ -23,6 +23,7 @@ enum NumDirection {
 }
 const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueState }) => {
     const [actualKeyState, setActualKeyState] = useState('');
+    
     useEffect(() => {
         let start: HTMLTableCellElement = document.querySelectorAll<HTMLTableCellElement>('#start')[0];
         start.focus();

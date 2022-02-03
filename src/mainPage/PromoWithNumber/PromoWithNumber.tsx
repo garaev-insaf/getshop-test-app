@@ -4,19 +4,27 @@ import "./styles/PromoWithNumber.scss";
 import "../../../public/fonts.css";
 import { NumBoard } from "./NumBoard/NumBoard";
 import { ChangeNumbers } from "./NumBoard/Scripts/FillingNumbers";
+import { ExitComponent } from "../universal/ExitComponent/ExitComponent";
+import { QrCodeAnnotation } from "../universal/QrCodeAnnotation/QrCodeAnnotation";
 
 const PromoWithNumber = () => {
     const phoneMask: string = '+7(___)___-__-__'
     const [phoneInputValueState, setPhoneInputValueState] = useState('+7(___)___-__-__');
+    const [privacyCheckboxState, setPrivacyCheckboxState] = useState(false);
 
     const handeInputKeyDown = (event: any) => {
-        ChangeNumbers(event, {phoneInputValueState, setPhoneInputValueState });
+        ChangeNumbers(event, { phoneInputValueState, setPhoneInputValueState });
     }
     const handleInputChange = (event) => {
         event.preventDefault();
     }
+    const handleChangeChk = () => {
+        setPrivacyCheckboxState(!privacyCheckboxState);
+    }
     return (
         <div className="promo-with-number" style={{ background: "url('images/van-damme-promo-image.jpg')" }}>
+            <ExitComponent />
+            <QrCodeAnnotation/>
             <aside className="number-promo-aside">
                 <form className="number-promo-form">
                     <div className="number-promo-header">
@@ -27,6 +35,11 @@ const PromoWithNumber = () => {
                         <div className="input-holder__description"><p>и с Вами свяжется наш менеждер для дальнейшей консультации</p></div>
                     </div>
                     <NumBoard phoneInputValueState={phoneInputValueState} setPhoneInputValueState={setPhoneInputValueState} />
+                    <div className="agree-policy-block">
+                        <input type="checkbox" className="agree-checkbox" id="agree-checkbox" name="agree-checkbox" defaultChecked={privacyCheckboxState} onChange={handleChangeChk} />
+                        <label htmlFor="agree-checkbox">Согласие на обработку персональных данных</label>
+                    </div>
+                    <button className="button_select-number" disabled>Подтвердить номер</button>
                 </form>
             </aside>
         </div>
