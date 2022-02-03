@@ -44,29 +44,26 @@ const PromoWithNumber = ({ getNumberValidation, phoneValidStatus, loaderStatus }
             getNumberValidation(phoneInputValueState.replace(/[^\d]/g, ''))
             setFullingNumberState(() => true);
         }
-        else if (phoneInputValueState.replace(/[^\d]/g, '').length == 10) {
+        else {
             setFullingNumberState(() => false);
         }
     }, [phoneInputValueState]);
 
     useEffect(() => {
-
-        if (!numberValidState && fullingNumberState) {
+        console.log(fullingNumberState);
+        console.log(!!phoneValidStatus.valid);
+        console.log(phoneValidStatus.valid);
+        if (!numberValidState && fullingNumberState && loaderStatus.loading == false) {
             setNumberError(() => true);
         }
         else {
             setNumberError(() => false);
         }
-    }, [numberValidState, fullingNumberState]);
-
-    console.log(numberValidState);
-    console.log(fullingNumberState);
-    console.log(numberError);
+    }, [numberValidState, fullingNumberState, loaderStatus]);
 
     useEffect(() => {
-        if (!!phoneValidStatus) {
+        if (typeof phoneValidStatus.valid !== 'undefined') {
             setNumberValidState(phoneValidStatus.valid);
-
         }
     }, [phoneValidStatus]);
 
