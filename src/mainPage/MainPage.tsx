@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { setVideoTimeLine } from '../Actions/VideoAction';
 import "./styles/MainPage.scss";
 import "../../public/fonts.css";
-import { PromoWithNumber } from "./PromoWithNumber/PromoWithNumber";
+import PromoWithNumber from "./PromoWithNumber/PromoWithNumber";
+import { FinalPromo } from "./FinalPromo/FinalPromo";
 
 interface IProps {
     setVideoTimeLine(time: number): void,
@@ -48,6 +49,11 @@ const MainPage = ({ setVideoTimeLine, videoTimeLineState }) => {
                     </Route>
                     <Route path="/number-input">
                         <PromoWithNumber />
+                        
+                    </Route>
+                    <Route path="/final-promo">
+                        <FinalPromo />
+                        
                     </Route>
                 </Switch>
 

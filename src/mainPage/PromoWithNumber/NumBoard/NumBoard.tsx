@@ -21,11 +21,13 @@ enum NumDirection {
     Eight,
     Nine,
 }
+
 const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueState }) => {
     const [actualKeyState, setActualKeyState] = useState('');
-    
+
     useEffect(() => {
         let start: HTMLTableCellElement = document.querySelectorAll<HTMLTableCellElement>('#start')[0];
+        const keyCollection = document.querySelectorAll<HTMLTableCellElement>('td');
         start.focus();
 
         // действия с выделенным блоком
@@ -46,8 +48,7 @@ const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueSt
         const checkKey = (e: any) => {
             e = e || window.event;
             if (e.type == 'mousedown' && e.target.tagName == 'TD') {
-                // события клика по виртуальной клавиатуре
-
+                // события клика мышью по виртуальной клавиатуре
                 // чистим стили ячейки под фокусом
                 start.style.backgroundColor = '';
                 start.style.color = '';
@@ -61,15 +62,33 @@ const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueSt
                 }
             }
             if (Number(e.key) < 10 && Number(e.key) >= 0) {
+                // визуализация выбора клавиши
+                const usedKey = Array.from(keyCollection).find(td => td.innerHTML == e.key);
+                usedKey.style.background = 'white';
+                usedKey.style.color = 'black';
+                setTimeout(() => {
+                    usedKey.style.background = 'transparent';
+                    usedKey.style.color = 'black';
+                }, 150)
                 // перехват нажатия на цифры, чтобы заполняли инпут
                 fillingNumbers(e.key, { phoneInputValueState, setPhoneInputValueState })
             }
             if (e.keyCode == '8') {
+                // визуализация выбора клавиши
+                const usedKey = Array.from(keyCollection).find(td => td.innerHTML == 'Стереть');
+                if (!!usedKey) {
+                    usedKey.style.background = 'white';
+                    usedKey.style.color = 'black';
+                    setTimeout(() => {
+                        usedKey.style.background = 'transparent';
+                        usedKey.style.color = 'black';
+                    }, 150)
+                }
                 deletingNumbers({ phoneInputValueState, setPhoneInputValueState })
             }
             if (e.keyCode == '13') {
                 if (Number(start.innerHTML) < 10 && Number(start.innerHTML) >= 0) {
-                    // перехват нажатия на цифры, чтобы заполняли инпут
+                    // перехват нажатия на цифры кликом, чтобы заполняли инпут
                     fillingNumbers(start.innerHTML, { phoneInputValueState, setPhoneInputValueState })
                 }
                 else {
@@ -127,7 +146,10 @@ const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueSt
 
         // keydown event
         document.onkeydown = document.onmousedown = checkKey;
-
+        return () => {
+            // удаление keydown event перед размонтированием компонента
+            document.onkeydown = document.onmousedown = null;
+        }
     }, [phoneInputValueState]); // обновление в зависимости от состояния, чтобы каждый раз работал с новыми данными
 
     return (
@@ -158,4 +180,6 @@ const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueSt
         </div>
     );
 };
+
+
 export { NumBoard };

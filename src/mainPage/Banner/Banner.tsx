@@ -1,6 +1,4 @@
 import * as React from 'react';
-// import { Dispatch } from "redux";
-// import { appStore } from "../../Store/Store.js"
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { setVideoTimeLine } from '../../Actions/VideoAction';

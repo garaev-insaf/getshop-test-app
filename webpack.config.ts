@@ -109,6 +109,10 @@ module.exports = {
                     from: path.resolve(__dirname, "./public/fonts"),
                     to: path.resolve(__dirname, "dist/fonts"),
                 },
+                {
+                    from: path.resolve(__dirname, "./public/images/icons/favicon.ico"),
+                    to: path.resolve(__dirname, "dist"),
+                },
             ],
         }),
     ],

@@ -30,6 +30,7 @@
 		"@types/webpack-dev-server": "^4.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.8.1",
 		"@typescript-eslint/parser": "^5.8.1",
+		"axios": "^0.25.0",
 		"babel-loader": "^8.2.3",
 		"copy-webpack-plugin": "^10.2.3",
 		"css-loader": "^6.5.1",

@@ -45,11 +45,37 @@
                     border: none;
                     caret-color: transparent;
                 }
+                &__input.error {
+                    color: red;
+                }
                 &__description {
                     margin-top: 13px;
                     @include promo-form-text;
                     font-size: 14px;
                     text-align: center;
+                }
+            }
+
+            .checking-status {
+                position: relative;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px;
+                img {
+                    width: 70px;
+                }
+                p {
+                    align-items: center;
+                    @include promo-form-text;
+                    color: #565656;
+                    font-size: 14px;
+                }
+                p.error-notification {
+                    @include promo-form-text;
+                    color: red;
+                    font-size: 14px;
                 }
             }
             .agree-policy-block {
@@ -89,8 +115,12 @@
                     background-image: url("data:image/svg+xml,%3Csvg width='24' height='20' viewBox='0 0 24 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='1.06066' y1='11.5659' x2='8.06066' y2='18.5659' stroke='black' stroke-width='3'/%3E%3Cline x1='6.2953' y1='18.5659' x2='22.9218' y2='1.9394' stroke='black' stroke-width='3'/%3E%3C/svg%3E%0A");
                 }
             }
-            button.button_select-number {
+            a.button_select-number {
+                display: flex;
+                text-decoration: none;
                 cursor: pointer;
+                align-items: center;
+                justify-content: center;
                 margin-top: 13px;
                 background: transparent;
                 width: 100%;
@@ -103,13 +133,14 @@
                 border: 1px solid black;
                 transition: 0.2s;
             }
-            button.button_select-number:disabled {
+            a.button_select-number.disabled {
                 font-weight: 500;
+                pointer-events: none;
                 background: transparent;
                 color: #4e4e4e;
                 border: 1px solid #4e4e4e;
             }
-            button.button_select-number:active {
+            a.button_select-number.active {
                 color: black;
                 background: white;
             }
