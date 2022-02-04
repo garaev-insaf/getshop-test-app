@@ -4,7 +4,7 @@ import "./styles/FinalPromo.scss";
 import "../../../public/fonts.css";
 import { ExitComponent } from "../universal/ExitComponent/ExitComponent";
 import { popAndUnshiftActionWithArray } from "../scripts/scripts";
-import { changeSlides } from "./scripts/ChangeSlides";
+import { changeSlides, slideByKeys } from "./scripts/ChangeSlides";
 
 const TRANSITION_DURATION_TIME = 300; // время анимации слайдера
 
@@ -29,9 +29,10 @@ const FinalPromo = () => {
 
         }
     }, [marginLeftOfSliderState]);
+
     useEffect(() => {
         if (marginLeftOfSliderState == 0) {
-            setMarginLeftOfSliderState(-(imagesState.length - 2)); // вычитаем два, т.к. добавили в начало в конец по одному элементу
+            setMarginLeftOfSliderState(-(imagesState.length - 2)); // вычитаем два, т.к. добавили в начало и в конец по одному элементу
             setTimeout(() => setSliderTransitionDurationTime(TRANSITION_DURATION_TIME), 50)
         }
         else if (marginLeftOfSliderState == -(imagesState.length - 1)) {
@@ -44,30 +45,13 @@ const FinalPromo = () => {
 
     }, [sliderTransitionDurationTime])
 
-    const slideByKeys = (event) => {
-        const e = event || window.event;
-        // для стрелок
-        if (e.keyCode == '37' || e.keyCode == '38') {
-            // left arrow
-            const leftButton = document.getElementById('prew-button');
-            leftButton.style.background = "#e8e8e8";
-            leftButton.click()
-            setTimeout(() => leftButton.style.background = "#181d28", 150)
-
-
-        } else if (e.keyCode == '39' || e.keyCode == '40') {
-            // right arrow
-            const rightButton = document.getElementById('next-button');
-            rightButton.style.background = "#e8e8e8";
-            rightButton.click()
-            setTimeout(() => rightButton.style.background = "#181d28", 150)
-
-        }
-    }
+    
     useEffect(() => {
+        // присваиваем  обработчик нажатий на кливаши
         document.onkeydown = (e) => slideByKeys(e);
 
         return () => {
+            // удаляем обработчик
             document.onkeydown = null;
         };
     }, [marginLeftOfSliderState, sliderTransitionDurationTime]);

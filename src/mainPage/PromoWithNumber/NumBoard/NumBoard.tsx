@@ -9,19 +9,6 @@ interface IProps {
     setPhoneInputValueState: React.Dispatch<React.SetStateAction<string>>,
 }
 
-enum NumDirection {
-    Zero,
-    One,
-    Two,
-    Three,
-    Four,
-    Five,
-    Six,
-    Seven,
-    Eight,
-    Nine,
-}
-
 const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueState }) => {
     const [actualKeyState, setActualKeyState] = useState('');
 
@@ -44,7 +31,7 @@ const NumBoard: React.FC<IProps> = ({ phoneInputValueState, setPhoneInputValueSt
                 start = sibling;
             }
         }
-
+        
         const checkKey = (e: any) => {
             e = e || window.event;
             if (e.type == 'mousedown' && e.target.tagName == 'TD') {
