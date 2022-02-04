@@ -24,6 +24,7 @@ const MainPage = ({ setVideoTimeLine, videoTimeLineState }) => {
             setBannerFlagState(() => true);
         }
     }
+    console.log(videoTimeLineState);
     // при загрузке первого фрейма видео проверяем хранится ли в состоянии сохранённое время
     const handeOnLoadedData = () => {
         if (videoTimeLineState > 0) {
@@ -49,11 +50,11 @@ const MainPage = ({ setVideoTimeLine, videoTimeLineState }) => {
                     </Route>
                     <Route path="/number-input">
                         <PromoWithNumber />
-                        
+
                     </Route>
                     <Route path="/final-promo">
                         <FinalPromo />
-                        
+
                     </Route>
                 </Switch>
 

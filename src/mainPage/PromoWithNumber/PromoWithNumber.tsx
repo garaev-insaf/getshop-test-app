@@ -35,9 +35,7 @@ const PromoWithNumber = ({ getNumberValidation, phoneValidStatus, loaderStatus }
     const handleChangeChk = () => {
         setPrivacyCheckboxState(!privacyCheckboxState);
     }
-    // const handleClick = () => {
-    //     getNumberValidation(phoneInputValueState.replace(/[^\d]/g, ''))
-    // }
+
 
     useEffect(() => {
         if (phoneInputValueState.replace(/[^\d]/g, '').length == 11) {
@@ -50,9 +48,6 @@ const PromoWithNumber = ({ getNumberValidation, phoneValidStatus, loaderStatus }
     }, [phoneInputValueState]);
 
     useEffect(() => {
-        console.log(fullingNumberState);
-        console.log(!!phoneValidStatus.valid);
-        console.log(phoneValidStatus.valid);
         if (!numberValidState && fullingNumberState && loaderStatus.loading == false) {
             setNumberError(() => true);
         }
@@ -72,7 +67,7 @@ const PromoWithNumber = ({ getNumberValidation, phoneValidStatus, loaderStatus }
             <ExitComponent />
             <QrCodeAnnotation />
             <aside className="number-promo-aside">
-                <form className="number-promo-form">
+                <div className="number-promo-form">
                     <div className="number-promo-header">
                         <h1 className="number-promo-header-text">Введите ваш номер мобильного телефона</h1>
                     </div>
@@ -100,10 +95,9 @@ const PromoWithNumber = ({ getNumberValidation, phoneValidStatus, loaderStatus }
                             pathname: "/final-promo",
                         }}
                         className={`button_select-number ${!privacyCheckboxState || !numberValidState ? 'disabled' : null}`}
-                    // onClick={() => handleClick()}
-                    >Подтвердить номер
+                    >Подтвердить номер  
                     </Link>
-                </form>
+                </div>
             </aside>
         </div >
     );
